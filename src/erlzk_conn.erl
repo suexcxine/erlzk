@@ -179,7 +179,7 @@ init([ServerList, Timeout, Options]) ->
             notify_monitor_server_state(Monitor, connected, Host, Port),
             {ok, NewState, PingIntv};
         {error, Reason} ->
-            error_logger:error_msg("Connect failed: ~p, will try again after ~ps~n", [Reason, ?ZK_RECONNECT_INTERVAL]),
+            error_logger:error_msg("Connect failed: ~p, will try again after ~pms~n", [Reason, ?ZK_RECONNECT_INTERVAL]),
             erlang:send_after(?ZK_RECONNECT_INTERVAL, self(), reconnect),
             State = #state{servers=ShuffledServerList, auth_data=AuthData, chroot=Chroot,
                            proto_ver=ProtocolVersion, timeout=Timeout, session_id=SessionId, password=Password,
